@@ -1,8 +1,8 @@
-export interface Estudiantes{
-    DNI: number,
-    nombre: string,
-    apellido: string,
-    sexo: string,
-    telefono: number,
-    email: string,
+export interface Estudiante {
+    legajo: number | null;
+    nombre: String;
+    apellido: String;
+    carrera: String;
+    regular: boolean;
+    fecha_inscripcion: String;
 }

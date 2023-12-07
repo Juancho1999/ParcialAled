@@ -1,0 +1,30 @@
+<h5> Modificamos alumno desde Componente Hijo</h5>
+<form class="nobarra">
+  <div class="row align-items-center">
+    <div class = "col">
+      <input type="number" (ngModel)="estudianteAEditar.legajo" name="legajo" placeholder="Legajo" readonly disabled> 
+    </div>
+    <div class = "col">
+      <input type="text" (ngModel)="estudianteAEditar.nombre" name="nombre" placeholder="Nombre">
+    </div>
+    <div class = "col">
+      <input type="text" (ngModel)="estudianteAEditar.apellido" name="apellido" placeholder="Apellido"> 
+    </div>
+    <div class = "col">
+      <input type="text" (ngModel)="estudianteAEditar.carrera" name="carrera" placeholder="Carrera"> 
+    </div>
+    <div class = "col">
+      <input type="checkbox" (ngModel)="estudianteAEditar.regular" name="regular"> Regular 
+    </div>
+    <div class="col">
+      <input type="date" (ngModel)="estudianteAEditar.fecha_inscripcion" name="fecha">
+    </div>
+    <div class = "col">
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary custom-btn" (click)="EditarEstudiante(estudianteAEditar)">Editar</button>  
+        <button type="button" class="btn btn-secondary custom-btn" (click)="cerrarComponente()">Cerrar</button>  
+      </div>
+    </div>
+  </div>
+  <hr>
+</form>

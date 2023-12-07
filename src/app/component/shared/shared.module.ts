@@ -23,6 +23,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDialogModule} from '@angular/material/dialog';
 import { environment } from 'src/enviroments/enviroments';
 import {MatCardModule} from '@angular/material/card';
+import { MatOptionModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [],
@@ -67,7 +69,8 @@ import {MatCardModule} from '@angular/material/card';
     MatDialogModule,
     AngularFireModule,
     BrowserAnimationsModule,
-    ToastrModule
+    ToastrModule,
+    MatOptionModule
   ]
 })
 export class SharedModule { }

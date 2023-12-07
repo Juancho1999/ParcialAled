@@ -1,0 +1,73 @@
+<div class="contenedor mt-4">
+    <div class="card">
+        <div class="card-body">
+            <span class="h3">Alumnos</span>
+            <button class="btn btn-dark btn-agregar">Agregar</button>
+            <table class="table table-striped mt-5">
+              <thead>
+                <tr>
+                  <th>Legajo</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Situación</th>
+                  <th>Fecha de Inscripción</th>
+                  <th>Carrera</th>
+                  <th>Área</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let estudiante of listaEstudiantes">
+                  <td class="align-middle">{{estudiante.legajo}}</td>
+                  <td class="align-middle">{{estudiante.nombre}}</td>
+                  <td class="align-middle">{{estudiante.apellido}}</td>
+                  <td class="align-middle" *ngIf="estudiante.regular">Regular</td>
+                  <td class="align-middle" *ngIf="!estudiante.regular">No Regular</td>
+                  <td class="align-middle">{{estudiante.fecha_inscripcion}}</td>
+                  <td class="align-middle">{{estudiante.carrera}}</td>
+                  <td class="align-middle">
+                    <span class="align-middle" *ngIf="estudiante.carrera === 'Angular' || estudiante.carrera === 'Javascript'">Front-end</span>
+                    <span class="align-middle" *ngIf="estudiante.carrera === 'Java' || estudiante.carrera === 'NodeJs' || estudiante.carrera === 'MySQL'">Back-end</span>
+                  </td>
+                  <td class="align-middle">
+                      <button type="button" class="btn btn-outline-primary custom-btn" (click)="EditarAlumno(estudiante)">Editar</button>
+                      <button type="button" class="btn btn-outline-danger custom-btn" (click)="EliminarAlumno(estudiante)">Eliminar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <button type="button" class="btn btn-success custom-btn" (click)="mostrarFormAgregar()">Agregar Alumno</button>
+            <hr>
+            <form *ngIf="mostrarFormularioAgregar" class="nobarra">
+              <div class="row align-items-center">
+                <div class = "col">
+                  <input type="number" (ngModel)="estudianteNuevo.legajo" name="legajo" placeholder="Legajo"> 
+                </div>
+                <div class = "col">
+                  <input type="text" (ngModel)="estudianteNuevo.nombre" name="nombre" placeholder="Nombre">
+                </div>
+                <div class = "col">
+                  <input type="text" (ngModel)="estudianteNuevo.apellido" name="apellido" placeholder="Apellido"> 
+                </div>
+                <div class = "col">
+                  <input type="text" (ngModel)="estudianteNuevo.carrera" name="carrera" placeholder="Carrera"> 
+                </div>
+                <div class = "col">
+                  <input type="checkbox" (ngModel)="estudianteNuevo.regular" name="regular"> Regular 
+                </div>
+                <div class = "col">
+                  <input type="date" (ngModel)="estudianteNuevo.fecha_inscripcion" name="fecha"> 
+                </div>
+                <div class = "col">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-secondary custom-btn" (click)="AgregarEstudianteEnEsteComponente()">Agregar</button>  
+                    <button type="reset" class="btn btn-secondary custom-btn" (click)="CancelarFormAgregar()">Cancelar</button>  
+                  </div>
+                </div>
+              </div>
+              <hr>
+            </form>
+        </div>
+    </div>
+</div>
