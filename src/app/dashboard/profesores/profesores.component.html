@@ -1,0 +1,74 @@
+<div class="contenedor mt-4">
+    <div class="card">
+        <div class="card-body">
+            <span class="h3">Profesores</span>
+            <button type="button" class="btn btn-dark btn-agregar" (click)="mostrarFormAgregar()">Agregar</button>
+            <table class="table table-striped mt-5">
+              <thead>
+                <tr>
+                  <th>DNI</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Situación</th>
+                  <th>Fecha de Ingresion</th>
+                  <th>Vocacion</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let profesor of listaProfesores">
+                  <td class="align-middle">{{profesor.DNI}}</td>
+                  <td class="align-middle">{{profesor.nombre}}</td>
+                  <td class="align-middle">{{profesor.apellido}}</td>
+                  <td class="align-middle" *ngIf="profesor.ejerciendo">Ejerciendo</td>
+                  <td class="align-middle" *ngIf="!profesor.ejerciendo">No Ejerciendo</td>
+                  <td class="align-middle">{{profesor.fecha_ingreso}}</td>
+                  <td class="align-middle">{{profesor.vocacion}}</td>
+                  <td class="align-middle">
+                      <button type="button" class="btn btn-outline-primary custom-btn" mat-icon-button (click)="EditarProfesor(profesor)"><mat-icon>border_color</mat-icon></button>
+                      <button type="button" class="btn btn-outline-danger custom-btn" mat-icon-button (click)="EliminarProfesor(profesor)"><mat-icon>delete</mat-icon></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <hr>
+            <form *ngIf="mostrarFormularioAgregar" class="nobarra">
+              <strong><h2>Agregar nuevo Profesor</h2></strong>
+              <br>
+                <div class = "form-floatin">
+                  <input type="number" [(ngModel)]="profesorNuevo.DNI" name="DNI" placeholder="DNI"> 
+                </div>
+                <br>
+                <div class = "form-floatin">
+                  <input type="text" [(ngModel)]="profesorNuevo.nombre" name="nombre" placeholder="Nombre">
+                </div>
+                <br>
+                <div class = "form-floatin">
+                  <input type="text" [(ngModel)]="profesorNuevo.apellido" name="apellido" placeholder="Apellido"> 
+                </div>
+                <br>
+                <div class = "form-floatin">
+                  <input type="text" [(ngModel)]="profesorNuevo.vocacion" name="vocacion" placeholder="Vocacion"> 
+                </div>
+                <br>
+                <div class = "form-floatin">
+                  <input type="checkbox" [(ngModel)]="profesorNuevo.ejerciendo" name="ejerciendo"> Ejerciendo 
+                </div>
+                <br>
+                <div class = "form-floatin">
+                  <input type="date" [(ngModel)]="profesorNuevo.fecha_ingreso" name="fecha"> 
+                </div>
+                <br>
+                <div class="form-floatin">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-secondary custom-btn" (click)="AgregarProfesorEnEsteComponente()">Agregar</button>  
+                    <button type="reset" class="btn btn-secondary custom-btn" (click)="CancelarFormAgregar()">Cancelar</button>  
+                  </div>
+                </div>
+              <hr>
+            </form>
+            <app-profesor-hijo *ngIf="mostrarComponenteHijo" [profesorAEditar]="profesorAModificar" (EventoProfesorHijo)="EditarProfesorQueVieneDesdeHijo($event)" (cerrarComponenteHijo)="cerrarComponenteHijo()"></app-profesor-hijo>
+        </div>
+    </div>
+</div>

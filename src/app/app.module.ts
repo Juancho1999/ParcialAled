@@ -13,9 +13,8 @@ import { RegistrarUsuarioComponent } from './component/registrar-usuario/registr
 import { VerificarCorreoComponent } from './component/verificar-correo/verificar-correo.component';
 import { RecuperarPasswordComponent } from './component/recuperar-password/recuperar-password.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { AlumnosComponent } from './component/alumnos/alumnos.component';
-import { NavbarComponent } from './component/navbar/navbar.component';
-import { AlumnoHijoComponent } from './component/alumno-hijo/alumno-hijo.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+
 
 @NgModule({
   declarations: [
@@ -24,9 +23,6 @@ import { AlumnoHijoComponent } from './component/alumno-hijo/alumno-hijo.compone
     RegistrarUsuarioComponent,
     VerificarCorreoComponent,
     RecuperarPasswordComponent,
-    AlumnosComponent,
-    NavbarComponent,
-    AlumnoHijoComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +30,7 @@ import { AlumnoHijoComponent } from './component/alumno-hijo/alumno-hijo.compone
     BrowserAnimationsModule,
     SharedModule,
     MatToolbarModule,
-    
+    DashboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

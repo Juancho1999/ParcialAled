@@ -1,0 +1,15 @@
+.contenedor{
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+  }
+  
+  .btn-agregar{
+      float: right;
+  }
+
+  .nobarra{
+    text-align: center;
+    border: 0.5px solid gray;
+    width: 550px;
+  }

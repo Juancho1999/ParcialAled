@@ -1,0 +1,34 @@
+<form class="nobarra">
+  <strong><h2>Editar Profesor</h2></strong>
+    <div class = "form-floatin">
+      <input type="number" [(ngModel)]="profesorAEditar.DNI" name="dni" placeholder="DNI" readonly disabled> 
+    </div>
+    <br>
+    <div class = "form-floatin">
+      <input type="text" [(ngModel)]="profesorAEditar.nombre" name="nombre" placeholder="Nombre">
+    </div>
+    <br>
+    <div class = "form-floatin">
+      <input type="text" [(ngModel)]="profesorAEditar.apellido" name="apellido" placeholder="Apellido"> 
+    </div>
+    <br>
+    <div class = "form-floatin">
+      <input type="text" [(ngModel)]="profesorAEditar.vocacion" name="vocacion" placeholder="Vocacion"> 
+    </div>
+    <br>
+    <div class = "form-floatin">
+      <input type="checkbox" [(ngModel)]="profesorAEditar.ejerciendo" name="ejerciendo"> Regular 
+    </div>
+    <br>
+    <div class="form-floatin">
+      <input type="date" [(ngModel)]="profesorAEditar.fecha_ingreso" name="fecha">
+    </div>
+    <br>
+    <div class = "form-floatin">
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary custom-btn" (click)="EditarProfesor(profesorAEditar)">Editar</button>  
+        <button type="button" class="btn btn-secondary custom-btn" (click)="cerrarComponente()">Cerrar</button>  
+      </div>
+    </div>
+  <hr>
+</form>

@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <span class="h3">Alumnos</span>
-            <button class="btn btn-dark btn-agregar">Agregar</button>
+            <button type="button" class="btn btn-dark btn-agregar" (click)="mostrarFormAgregar()">Agregar</button>
             <table class="table table-striped mt-5">
               <thead>
                 <tr>
@@ -12,7 +12,6 @@
                   <th>Situación</th>
                   <th>Fecha de Inscripción</th>
                   <th>Carrera</th>
-                  <th>Área</th>
                   <th></th>
                 </tr>
               </thead>
@@ -26,48 +25,50 @@
                   <td class="align-middle">{{estudiante.fecha_inscripcion}}</td>
                   <td class="align-middle">{{estudiante.carrera}}</td>
                   <td class="align-middle">
-                    <span class="align-middle" *ngIf="estudiante.carrera === 'Angular' || estudiante.carrera === 'Javascript'">Front-end</span>
-                    <span class="align-middle" *ngIf="estudiante.carrera === 'Java' || estudiante.carrera === 'NodeJs' || estudiante.carrera === 'MySQL'">Back-end</span>
-                  </td>
-                  <td class="align-middle">
-                      <button type="button" class="btn btn-outline-primary custom-btn" (click)="EditarAlumno(estudiante)">Editar</button>
-                      <button type="button" class="btn btn-outline-danger custom-btn" (click)="EliminarAlumno(estudiante)">Eliminar</button>
+                      <button type="button" class="btn btn-outline-primary custom-btn" mat-icon-button (click)="EditarAlumno(estudiante)"><mat-icon>border_color</mat-icon></button>
+                      <button type="button" class="btn btn-outline-danger custom-btn" mat-icon-button (click)="EliminarAlumno(estudiante)"><mat-icon>delete</mat-icon></button>
                   </td>
                 </tr>
               </tbody>
             </table>
             
-            <button type="button" class="btn btn-success custom-btn" (click)="mostrarFormAgregar()">Agregar Alumno</button>
             <hr>
             <form *ngIf="mostrarFormularioAgregar" class="nobarra">
-              <div class="row align-items-center">
-                <div class = "col">
-                  <input type="number" (ngModel)="estudianteNuevo.legajo" name="legajo" placeholder="Legajo"> 
+              <strong><h2>Agregar nuevo alumno</h2></strong>
+                <br>
+                <div class = "form-floatin">
+                  <input type="number" [(ngModel)]="estudianteNuevo.legajo" name="legajo" placeholder="Legajo"> 
                 </div>
-                <div class = "col">
-                  <input type="text" (ngModel)="estudianteNuevo.nombre" name="nombre" placeholder="Nombre">
+                <br>
+                <div class = "form-floatin">
+                  <input type="text" [(ngModel)]="estudianteNuevo.nombre" name="nombre" placeholder="Nombre">
                 </div>
+                <br>
                 <div class = "col">
-                  <input type="text" (ngModel)="estudianteNuevo.apellido" name="apellido" placeholder="Apellido"> 
+                  <input type="text" [(ngModel)]="estudianteNuevo.apellido" name="apellido" placeholder="Apellido"> 
                 </div>
-                <div class = "col">
-                  <input type="text" (ngModel)="estudianteNuevo.carrera" name="carrera" placeholder="Carrera"> 
+                <br>
+                <div class = "form-floatin">
+                  <input type="text" [(ngModel)]="estudianteNuevo.carrera" name="carrera" placeholder="Carrera"> 
                 </div>
-                <div class = "col">
-                  <input type="checkbox" (ngModel)="estudianteNuevo.regular" name="regular"> Regular 
+                <br>
+                <div class = "form-floatin">
+                  <input type="checkbox" [(ngModel)]="estudianteNuevo.regular" name="regular"> Regular 
                 </div>
-                <div class = "col">
-                  <input type="date" (ngModel)="estudianteNuevo.fecha_inscripcion" name="fecha"> 
+                <br>
+                <div class = "form-floatin">
+                  <input type="date" [(ngModel)]="estudianteNuevo.fecha_inscripcion" name="fecha"> 
                 </div>
-                <div class = "col">
+                <br>
+                <div class="form-floatin">
                   <div class="btn-group">
                     <button type="button" class="btn btn-secondary custom-btn" (click)="AgregarEstudianteEnEsteComponente()">Agregar</button>  
                     <button type="reset" class="btn btn-secondary custom-btn" (click)="CancelarFormAgregar()">Cancelar</button>  
                   </div>
                 </div>
-              </div>
               <hr>
             </form>
+            <app-alumnohijo *ngIf="mostrarComponenteHijo" [estudianteAEditar]="estudianteAModificar" (EventoEstudianteHijo)="EditarAlumnoQueVieneDesdeHijo($event)" (cerrarComponenteHijo)="cerrarComponenteHijo()"></app-alumnohijo>
         </div>
     </div>
 </div>

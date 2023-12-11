@@ -1,8 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 
 import { Estudiante } from 'src/app/interface/estudiantes';
+import { AlumnosService } from 'src/app/services/alumnos.service'; 
 
 @Component({
   selector: 'app-alumnos',
@@ -11,14 +13,16 @@ import { Estudiante } from 'src/app/interface/estudiantes';
 })
 export class AlumnosComponent implements OnInit{
 
-  firestore: Firestore = inject(Firestore)
-  items: Observable<any[]>;
 
-  constructor() {
-    const aCollection = collection(this.firestore, 'cursos')
-    this.items = collectionData(aCollection);
+  constructor(private toastr: ToastrService,
+              private service: AlumnosService) {
+  
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.listaEstudiantes = this.service.getAlumnos();
+  }
+
+  listaEstudiantes!: Estudiante[];
 
   mostrarComponenteHijo: boolean = false;
   mostrarFormularioAgregar: boolean = false;
@@ -41,54 +45,12 @@ export class AlumnosComponent implements OnInit{
     fecha_inscripcion : ''
   }
 
-  listaEstudiantes: Estudiante[] = [
-    { 
-      legajo : 1234,
-      nombre : 'Juan Carlos',
-      apellido : 'Gutierrez',
-      carrera : 'Angular',
-      regular : true,
-      fecha_inscripcion : '2022-02-23'
-    },
-    { 
-      legajo : 3568,
-      nombre : 'Felipe Luis',
-      apellido : 'Gómez',
-      carrera : 'Java',
-      regular : false,
-      fecha_inscripcion : '2022-05-02'
-    },
-    { 
-      legajo : 4778,
-      nombre : 'Marcela ',
-      apellido : 'Diaz Lopez',
-      carrera : 'Javascript',
-      regular : true,
-      fecha_inscripcion : '2022-03-23'
-    },
-    { 
-      legajo : 4741,
-      nombre : 'Sol Patricia',
-      apellido : 'González',
-      carrera : 'MySQL',
-      regular : false,
-      fecha_inscripcion : '2021-02-15'
-    },
-    { 
-      legajo : 4358,
-      nombre : 'Carla Andrea',
-      apellido : 'Funes',
-      carrera : 'NodeJs',
-      regular : true,
-      fecha_inscripcion : '2022-03-15'
-    },
-  ]
-
+ 
   AgregarEstudianteEnEsteComponente(){
-
+    if(this.validarCampos(this.estudianteNuevo)){
     this.listaEstudiantes.push(this.estudianteNuevo);
     this.CancelarFormAgregar();
-    
+    }
   }
 
   EliminarAlumno(estudianteAEliminar: Estudiante) {
@@ -99,10 +61,12 @@ export class AlumnosComponent implements OnInit{
   }
 
 EditarAlumnoQueVieneDesdeHijo(estudiante:Estudiante){
+  if(this.validarCampos(estudiante)){
   const index = this.listaEstudiantes.findIndex((unEstudiante) => unEstudiante.legajo === estudiante.legajo);
   if (index !== -1) {
     this.listaEstudiantes[index] = estudiante;
   }
+}
 }
 
 EditarAlumno(estudianteAEditar:Estudiante): void {
@@ -138,6 +102,25 @@ CancelarFormAgregar(): void {
   };
 
   this.mostrarFormularioAgregar = false;
+}
+
+
+validarCampos(alumnos: Estudiante){
+  if(alumnos.legajo == null){
+    this.toastr.error('campos vacios', 'Error');
+      return false
+  } else if (alumnos.nombre == ''){
+    this.toastr.error('campos vacios', 'Error');
+    return false
+  } else if (alumnos.apellido == ''){
+    this.toastr.error('campos vacios', 'Error');
+    return false
+  } else if (alumnos.carrera == ''){
+    this.toastr.error('campos vacios', 'Error');
+    return false;
+  }else return true;
+
+
 }
 
 }

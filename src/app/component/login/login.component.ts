@@ -37,7 +37,9 @@ loading=false;
     this.afAuth.signInWithEmailAndPassword(email, password).then((user)=>{
      
       if(user.user?.emailVerified) {
+        this.afAuth.idToken.subscribe(data=>{if(data){localStorage.setItem('token',data)}});
         this.router.navigate(['/dashboard']);
+        
       } else {
         this.router.navigate(['/verificar-correo']);
       }

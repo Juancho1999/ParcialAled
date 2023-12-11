@@ -1,0 +1,15 @@
+<nav class="navbar navbar-dark bg-dark">
+    <span class="navbar-brand mb-0 h1">App ITBeltran</span>
+
+    <div>
+        <button mat-button  class="btn btn-primary" routerLink="profesores">
+            <span class="title">Profesores</span>
+        </button>
+        <span class="example-spacer"></span>
+        <button mat-button class="btn btn-primary" routerLink="alumnos">
+            <span class="title">Lista de Alumnos</span>
+        </button>
+    </div>
+
+    <button type="button" color="warn" mat-icon-button (click)="logout()"><mat-icon>logout</mat-icon></button>
+</nav>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 //modulos
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire/compat';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,7 +25,6 @@ import { environment } from 'src/enviroments/enviroments';
 import {MatCardModule} from '@angular/material/card';
 import { MatOptionModule } from '@angular/material/core';
 
-
 @NgModule({
   declarations: [],
   imports: [
@@ -46,6 +45,7 @@ import { MatOptionModule } from '@angular/material/core';
     MatGridListModule,
     MatDialogModule,
     MatCardModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserAnimationsModule,
     ToastrModule.forRoot()
@@ -70,7 +70,8 @@ import { MatOptionModule } from '@angular/material/core';
     AngularFireModule,
     BrowserAnimationsModule,
     ToastrModule,
-    MatOptionModule
+    MatOptionModule,
+    FormsModule
   ]
 })
 export class SharedModule { }
